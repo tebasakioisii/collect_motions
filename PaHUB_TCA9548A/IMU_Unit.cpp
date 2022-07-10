@@ -20,7 +20,7 @@ float gyroZ = 0;
 
 float temp = 0;
 
-void setup() {
+void setup__() {
   // put your setup code here, to run once:
   M5.begin();
   M5.Power.begin();
@@ -33,7 +33,7 @@ void setup() {
   imu6886.Init(21, 22);
 }
 
-void loop() {
+void loop__() {
   // put your main code here, to run repeatedly:
   imu6886.getGyroData(&gyroX,&gyroY,&gyroZ);
   imu6886.getAccelData(&accX,&accY,&accZ);

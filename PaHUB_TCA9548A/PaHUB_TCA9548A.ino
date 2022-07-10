@@ -18,8 +18,8 @@
 
 #define FRONT 2
 
-#define X_LOCAL 100
-#define Y_LOCAL 35
+#define X_LOCAL 0
+#define Y_LOCAL 0
 #define X_OFFSET 160
 #define Y_OFFSET 34
 
@@ -33,9 +33,6 @@ void setup()
   Wire.begin();
   tca9548a.address(PaHub_I2C_ADDRESS);  //Set the I2C address.  设置I2C地址
 	M5.Lcd.setTextFont(4);
-	M5.Lcd.setCursor(70, 0, 4);
-	M5.Lcd.setTextColor(YELLOW,TFT_BLACK);
-	M5.Lcd.println(("PaHUB Example"));
 	M5.Lcd.setTextColor(TFT_WHITE,TFT_BLACK);
 }
 
@@ -43,7 +40,7 @@ void loop()
 {
 	uint8_t returnCode = 0;
 	uint8_t address;
-  for( uint8_t channel=0; channel<TCA9548A_MAX_CHANNELS; channel++ ) {
+  for( uint8_t channel=0; channel<4; channel++ ) {
     M5.Lcd.setCursor(X_LOCAL, Y_LOCAL + Y_OFFSET*channel , FRONT);
     M5.Lcd.printf("                                                                ");
     M5.Lcd.setCursor(X_LOCAL, Y_LOCAL + Y_OFFSET*channel , FRONT);
