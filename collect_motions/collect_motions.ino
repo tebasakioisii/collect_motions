@@ -1,4 +1,3 @@
-
 #include <M5Core2.h>
 
 #define FRONT 2
@@ -12,6 +11,7 @@
 float accX = 0.0F;
 float accY = 0.0F;
 float accZ = 0.0F;
+char buf[150];
 
 void setup()
 {
@@ -19,18 +19,17 @@ void setup()
   M5.IMU.Init();
   M5.Lcd.setTextFont(4);
   M5.Lcd.setTextColor(TFT_WHITE,TFT_BLACK);
-  Serial.begin( 115200 );
+  Serial2.begin( 115200, SERIAL_8N1, 16, 17 );
 }
 
 void loop()
 {
   // 内臓IMUから取得
-  char buf[150];
-  
   M5.IMU.getAccelData(&accX,&accY,&accZ);
   M5.Lcd.setCursor(X_LOCAL, Y_LOCAL + Y_OFFSET*4 , FRONT);
   sprintf(buf, " %5.3f   %5.3f   %5.3f   ", accX, accY, accZ);
-  Serial.print(buf);
+//  Serial.print(buf);
+  Serial.write(buf);
   M5.Lcd.printf(buf);
   delay(1000);
 }
