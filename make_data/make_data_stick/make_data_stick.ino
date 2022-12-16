@@ -10,7 +10,7 @@ char buf[50];
 void setup() {
   M5.begin();
   M5.Imu.Init();
-  Serial.begin( 57600, SERIAL_8N1, 32, 33 );
+  Serial.begin( 57600);
   M5.IMU.getAccelData(&accX, &accY, &accZ);
   M5.lcd.setCursor(0, 0);
   M5.lcd.setTextFont(2);
