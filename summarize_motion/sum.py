@@ -28,7 +28,8 @@ def get_motion(port = '/dev/ttyACM0'):
     print(d)
 
 def main():
-    get_motion()
+    thread_1 = threading.Thread(target=get_motion, args=('/dev/ttyACM0',))
+    thread_1.start()
 
 if __name__ == '__main__':
     main()
