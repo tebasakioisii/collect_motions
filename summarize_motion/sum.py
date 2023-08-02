@@ -14,12 +14,12 @@ def get_motion(port = '/dev/ttyACM0'):
     s.reset_input_buffer()
     s.write(b'aa')
     time.sleep(1)
-    s.write(b'0')
-    time.sleep(2)
-    s.readline()
 
     # wait another thread
     ev.wait()
+
+    s.write(b'0')
+    s.readline()
     d = []
     with open('motion1.csv', 'w') as f:
         writer = csv.writer(f)
@@ -28,7 +28,6 @@ def get_motion(port = '/dev/ttyACM0'):
             d.append(value)
             print(value, file=f)
         f.close
-    print(d)
 
 def main():
     thread_1 = threading.Thread(target=get_motion, args=('/dev/ttyACM0',))
